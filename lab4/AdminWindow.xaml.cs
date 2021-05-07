@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
@@ -23,6 +24,7 @@ namespace lab4
     
     public partial class AdminWindow : Window
     {
+
         public BindingList<Train> trains;
         AppContext db;
         public AdminWindow()
@@ -47,6 +49,29 @@ namespace lab4
             trains = dataGrid.DataContext as BindingList<Train>;
             dataGrid.UpdateLayout();
             db.SaveChanges();
+        }
+
+        private void Button_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItems != null && dataGrid.SelectedItems.Count > 0)
+            {
+                var toRemove = dataGrid.SelectedItems.Cast<Train>().ToList();
+                //Delete logic here
+                //...remove items from EF and save
+
+                //Once confirmed remove from items source
+                var items = dataGrid.ItemsSource as BindingList<Train>;
+                if (items != null)
+                {
+                    foreach (var order in toRemove)
+                    {
+                        items.Remove(order);
+                    }
+                }
+            }
+            dataGrid.UpdateLayout();
+            db.SaveChanges();
+
         }
     }
 }

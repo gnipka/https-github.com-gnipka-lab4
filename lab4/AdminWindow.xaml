@@ -21,6 +21,11 @@
                 <DataGrid AutoGenerateColumns="False" x:Name="dataGrid" HorizontalAlignment="Center" Margin="0 0 0 5" VerticalAlignment="Top" Width="900" Height="400" ItemsSource="{Binding trains}">
 
                     <DataGrid.Columns>
+                        <DataGridCheckBoxColumn x:Name="column_CheckBox"  IsReadOnly="False" Binding="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}">
+                            <DataGridCheckBoxColumn.ElementStyle>
+                                <Style TargetType="CheckBox"/>
+                            </DataGridCheckBoxColumn.ElementStyle>
+                        </DataGridCheckBoxColumn>
                         <DataGridTextColumn x:Name="column_ID" Header="ID поезда" Binding="{Binding id_train}" />
                         <DataGridTextColumn x:Name="column_category" Header="Категория" Binding="{Binding Category}"/>
                         <DataGridTextColumn x:Name="column_route" Header="Маршрут" Binding="{Binding Route}" />
@@ -32,7 +37,14 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Grid Margin="0 0 0 15">
-                    <Button  HorizontalAlignment="Left" Content="Сохранить изменения" Margin="0 0 0 5"  Click="Button_SaveChange_Click" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" HorizontalAlignment="Left"  Content="Сохранить изменения" Margin="0 0 0 5"  Click="Button_SaveChange_Click" />
+                    <Button Grid.Column="1" HorizontalAlignment="Left" Content="Удалить запись" Margin="0 0 0 5"  Click="Button_Delete_Click" />
 
                 </Grid>
 
