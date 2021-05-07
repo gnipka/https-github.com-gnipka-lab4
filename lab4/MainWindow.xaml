@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:lab4"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Приложение для пользователей" Height="500" Width="650">
+        Title="Приложение для пользователей" Height="500" Width="650" WindowStartupLocation="CenterScreen">
     <Grid Background="#B39ECC">
         <Border MinWidth="400" Margin="15" Background="White" VerticalAlignment ="Center" Padding="30" MaxWidth="550" CornerRadius="20">
             <Border.Effect>

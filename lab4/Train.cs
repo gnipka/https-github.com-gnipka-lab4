@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace lab4
 {
-    class Train
+    public class Train
     {
         [Key]
         public int id_train { get; set; }

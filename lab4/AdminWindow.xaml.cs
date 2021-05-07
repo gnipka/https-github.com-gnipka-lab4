@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +23,17 @@ namespace lab4
     
     public partial class AdminWindow : Window
     {
+        public BindingList<Train> trains;
         AppContext db;
         public AdminWindow()
         {
             InitializeComponent();
-
             db = new AppContext();
-            List<Train> trains = db.Trains.ToList();
+            db.Trains.Load();
+            var trains = db.Trains.Local.ToBindingList();
             dataGrid.ItemsSource = trains;
+            dataGrid.UpdateLayout();
             dataGrid.Columns[0].IsReadOnly = true;
-
-
         }
 
         private void Button_OpenWindow_Click(object sender, RoutedEventArgs e)
@@ -40,9 +42,11 @@ namespace lab4
             inputData.Show();
         }
 
-        private void dataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        private void Button_SaveChange_Click(object sender, RoutedEventArgs e)
         {
-
+            trains = dataGrid.DataContext as BindingList<Train>;
+            dataGrid.UpdateLayout();
+            db.SaveChanges();
         }
     }
 }

@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:lab4"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Приложение для пользователей" Height="650" Width="1000">
+        Title="Приложение для пользователей" Height="650" Width="1050" WindowStartupLocation="CenterScreen">
     <Grid Background="#B39ECC">
-        <Border MinWidth="550" Margin="15" Background="White" VerticalAlignment ="Center" Padding="30" MaxWidth="950" CornerRadius="20">
+        <Border MinWidth="600" Margin="15 15 15 10" Background="White" VerticalAlignment ="Center" Padding="30" MaxWidth="950" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="30" Color="#A98ECC" ShadowDepth="0"/>
             </Border.Effect>
@@ -18,7 +18,7 @@
                     <TextBlock HorizontalAlignment="Left" Text="Расписание поездов" FontSize="30" FontWeight="Bold" Margin="0 0 0 0" />
                     <Button  Click="Button_OpenWindow_Click" HorizontalAlignment="Right" Content="Добавить данные" Margin="0 0 0 5" Style="{StaticResource MaterialDesignFlatButton}" />
                 </Grid>
-                <DataGrid  AddingNewItem="dataGrid_AddingNewItem" AutoGenerateColumns="False" x:Name="dataGrid" HorizontalAlignment="Center" Margin="0 0 0 0" VerticalAlignment="Top" Width="870" Height="450" ItemsSource="{Binding trains}">
+                <DataGrid AutoGenerateColumns="False" x:Name="dataGrid" HorizontalAlignment="Center" Margin="0 0 0 5" VerticalAlignment="Top" Width="900" Height="400" ItemsSource="{Binding trains}">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="column_ID" Header="ID поезда" Binding="{Binding id_train}" />
@@ -32,7 +32,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Grid Margin="0 0 0 15">
-                    <Button  HorizontalAlignment="Left" Content="Сохранить изменения" Margin="0 0 0 5" Style="{StaticResource MaterialDesignFlatButton}" />
+                    <Button  HorizontalAlignment="Left" Content="Сохранить изменения" Margin="0 0 0 5"  Click="Button_SaveChange_Click" />
 
                 </Grid>
 
