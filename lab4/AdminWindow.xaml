@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:lab4"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Приложение для пользователей" Height="650" Width="1050" WindowStartupLocation="CenterScreen">
+        Title="Расписание поездов" Height="650" Width="1050" WindowStartupLocation="CenterScreen">
     <Grid Background="#B39ECC">
         <Border MinWidth="600" Margin="15 15 15 10" Background="White" VerticalAlignment ="Center" Padding="30" MaxWidth="950" CornerRadius="20">
             <Border.Effect>
@@ -45,7 +45,8 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" HorizontalAlignment="Left"  Content="Сохранить изменения" Margin="0 0 0 5"  Click="Button_SaveChange_Click" />
                     <Button Grid.Column="1" HorizontalAlignment="Left" Content="Удалить запись" Margin="0 0 0 5"  Click="Button_Delete_Click" />
-
+                    <Button Grid.Column="2" HorizontalAlignment="Left" Content="Изменить запись" Margin="0 0 0 5"  Click="Button_Change_Click" />
+                    <Button Grid.Column="3" HorizontalAlignment="Left" Content="Экспорт в Excel" Margin="0 0 0 5" Click="Button_Export_Click" />
                 </Grid>
 
             </StackPanel>
