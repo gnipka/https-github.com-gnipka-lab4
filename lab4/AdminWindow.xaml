@@ -18,7 +18,7 @@
                     <TextBlock HorizontalAlignment="Left" Text="Расписание поездов" FontSize="30" FontWeight="Bold" Margin="0 0 0 0" />
                     <Button  Click="Button_OpenWindow_Click" HorizontalAlignment="Right" Content="Добавить данные" Margin="0 0 0 5" Style="{StaticResource MaterialDesignFlatButton}" />
                 </Grid>
-                <DataGrid AutoGenerateColumns="False" x:Name="dataGrid" HorizontalAlignment="Center" Margin="0 0 0 5" VerticalAlignment="Top" Width="900" Height="400" ItemsSource="{Binding trains}">
+                <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="dataGrid" HorizontalAlignment="Center" Margin="0 0 0 5" VerticalAlignment="Top" Width="900" Height="400" ItemsSource="{Binding trains}">
 
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn x:Name="column_CheckBox"  IsReadOnly="False" Binding="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}">
@@ -26,13 +26,13 @@
                                 <Style TargetType="CheckBox"/>
                             </DataGridCheckBoxColumn.ElementStyle>
                         </DataGridCheckBoxColumn>
-                        <DataGridTextColumn x:Name="column_ID" Header="ID поезда" Binding="{Binding id_train}" />
-                        <DataGridTextColumn x:Name="column_category" Header="Категория" Binding="{Binding Category}"/>
-                        <DataGridTextColumn x:Name="column_route" Header="Маршрут" Binding="{Binding Route}" />
-                        <DataGridTextColumn x:Name="column_arrival_date" Header="Дата отправления" Binding="{Binding Arrival_date}"/>
-                        <DataGridTextColumn x:Name="column_arrival_time" Header="Время отправления" Binding="{Binding Arrival_time}"/>
-                        <DataGridTextColumn x:Name="column_departure_date" Header="Дата прибытия" Binding="{Binding Departure_date}"/>
-                        <DataGridTextColumn x:Name="column_departure_time" Header="Время прибытия" Binding="{Binding Departure_time}" />
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_ID" Header="ID поезда" Binding="{Binding id_train}" />
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_category" Header="Категория" Binding="{Binding Category}"/>
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_route" Header="Маршрут" Binding="{Binding Route}" />
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_arrival_date" Header="Дата отправления" Binding="{Binding Arrival_date}"/>
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_arrival_time" Header="Время отправления" Binding="{Binding Arrival_time}"/>
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_departure_date" Header="Дата прибытия" Binding="{Binding Departure_date}"/>
+                        <DataGridTextColumn IsReadOnly="True" x:Name="column_departure_time" Header="Время прибытия" Binding="{Binding Departure_time}" />
 
                     </DataGrid.Columns>
                 </DataGrid>

@@ -35,7 +35,7 @@ namespace lab4
         private SQLiteConnection DB;
         public ChangeData()
         {
-
+    
             InitializeComponent();
             db = new AppContext();
             var trains = db.Trains;
@@ -44,38 +44,38 @@ namespace lab4
                 id.Add(u.id_train.ToString());
                 textBoxID.ItemsSource = id;
             }
-            textBoxID.IsEditable = true;
-            textBoxID.Text = id[0];
-            foreach(Train u in trains)
-            {
-                category.Add(u.Category.ToString());
-            }
-            textBoxCategory.Text = category[0];
-            foreach (Train u in trains)
-            {
-                route.Add(u.Route.ToString());
-            }
-            textBoxRoute.Text = route[0];
-            foreach (Train u in trains)
-            {
-                arrival_date.Add(u.Arrival_date.ToString());
-            }
-            datePickerArrival_Date.SelectedDate = Convert.ToDateTime(arrival_date[0]);
-            foreach (Train u in trains)
-            {
-                arrival_time.Add(u.Arrival_time.ToString());
-            }
-            timePickerArrival.Text = arrival_time[0];
-            foreach (Train u in trains)
-            {
-                departure_date.Add(u.Departure_date.ToString());
-            }
-            datePickerDeparture_Date.SelectedDate = Convert.ToDateTime(arrival_date[0]);
-            foreach (Train u in trains)
-            {
-                departure_time.Add(u.Departure_time.ToString());
-            }
-            timePickerDeparture.Text = departure_time[0];
+            textBoxID.IsEditable = false;
+                textBoxID.Text = id[0];
+                foreach (Train u in trains)
+                {
+                    category.Add(u.Category.ToString());
+                }
+                textBoxCategory.Text = category[0];
+                foreach (Train u in trains)
+                {
+                    route.Add(u.Route.ToString());
+                }
+                textBoxRoute.Text = route[0];
+                foreach (Train u in trains)
+                {
+                    arrival_date.Add(u.Arrival_date.ToString());
+                }
+                datePickerArrival_Date.SelectedDate = Convert.ToDateTime(arrival_date[0]);
+                foreach (Train u in trains)
+                {
+                    arrival_time.Add(u.Arrival_time.ToString());
+                }
+                timePickerArrival.Text = arrival_time[0];
+                foreach (Train u in trains)
+                {
+                    departure_date.Add(u.Departure_date.ToString());
+                }
+                datePickerDeparture_Date.SelectedDate = Convert.ToDateTime(arrival_date[0]);
+                foreach (Train u in trains)
+                {
+                    departure_time.Add(u.Departure_time.ToString());
+                }
+                timePickerDeparture.Text = departure_time[0];
         }
 
         private void Button_OpenWindow_Click(object sender, RoutedEventArgs e)
@@ -120,7 +120,8 @@ namespace lab4
             if (textBoxCategory.Text != "" && textBoxRoute.Text != "" && datePickerArrival_Date.Text != "" && timePickerArrival.Text != null && datePickerDeparture_Date.Text != "" && timePickerDeparture.Text != null)
             {
                 string sqlExpression = String.Format("UPDATE Trains SET category = '{0}', route = '{1}', arrival_date = '{2}', arrival_time = '{3}', departure_date = '{4}', departure_time = '{5}' WHERE id_train = '{6}'", textBoxCategory.Text, textBoxRoute.Text, datePickerArrival_Date.Text, timePickerArrival.Text, datePickerDeparture_Date.Text, timePickerDeparture.Text, textBoxID.SelectedItem);
-                using (DB = new SQLiteConnection(@"Data source = C:\Users\admin\source\repos\lab4\lab4\bin\Debug\train_schedule.db"))
+                using (DB = new SQLiteConnection("Data source = train_schedule.db"))
+                    //Data source = C:\Users\admin\source\repos\lab4\lab4\bin\Debug\
                 {
                     DB.Open();
                     using (SQLiteCommand cmd = new SQLiteCommand(sqlExpression, DB))

@@ -74,7 +74,7 @@ namespace lab4
             switch(result)
             {
                 case MessageBoxResult.Yes:
-                    if (dataGrid.SelectedItems != null && dataGrid.SelectedItems.Count > 0)
+                    if (dataGrid.SelectedItems != null && dataGrid.SelectedItems.Count > 0 && !dataGrid.Items.IsEmpty)
                     {
                         var toRemove = dataGrid.SelectedItems.Cast<Train>().ToList();
                         //Delete logic here
@@ -90,10 +90,14 @@ namespace lab4
                             }
                         }
                     }
+                   else
+                    {
+                        MessageBox.Show("Убедитесь, что вы выделили запись для удаления или, что ваша таблица имеет данные");
+                    }
                     dataGrid.UpdateLayout();
                     db.SaveChanges();
                     break;
-                case MessageBoxResult.No:
+                case MessageBoxResult.No:          
                     break;
             }
         }
@@ -108,9 +112,19 @@ namespace lab4
 
         private void Button_Change_Click(object sender, RoutedEventArgs e)
         {
-            ChangeData changeData = new ChangeData();
-            changeData.Show();
-            Hide();
+            if (dataGrid.Items.Count != 0)
+            {
+                ChangeData changeData = new ChangeData();
+                changeData.Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("Перед изменением данных, заполните таблицу");
+                InputData inputData = new InputData();
+                inputData.Show();
+                Hide();
+            }
         }
 
         public static void Change( Train train)
@@ -127,19 +141,19 @@ namespace lab4
                 Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
                 Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
 
-                for (int j = 0; j < dataGrid.Columns.Count; j++) // для названий
+                for (int j = 1; j < dataGrid.Columns.Count; j++) // для названий
                 {
-                    Range myRange = (Range)sheet1.Cells[1, j + 1];
-                    sheet1.Cells[1, j + 1].Font.Bold = true; //для заголовка жирным шрифтом
-                    sheet1.Columns[j + 1].ColumnWidth = 15; // регулировка ширины столбца
+                    Range myRange = (Range)sheet1.Cells[1, j];
+                    sheet1.Cells[1, j].Font.Bold = true; //для заголовка жирным шрифтом
+                    sheet1.Columns[j].ColumnWidth = 15; // регулировка ширины столбца
                     myRange.Value2 = dataGrid.Columns[j].Header;
                 }
-                for (int i = 0; i < dataGrid.Columns.Count; i++)
-                { 
+                for (int i = 1; i < dataGrid.Columns.Count; i++)
+                {
                     for (int j = 0; j < dataGrid.Items.Count; j++)
                     {
                         TextBlock b = dataGrid.Columns[i].GetCellContent(dataGrid.Items[j]) as TextBlock;
-                        Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i + 1];
+                        Microsoft.Office.Interop.Excel.Range myRange = (Microsoft.Office.Interop.Excel.Range)sheet1.Cells[j + 2, i];
                         myRange.Value2 = b.Text;
                     }
                 }
